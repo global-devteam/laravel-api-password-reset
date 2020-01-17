@@ -1,0 +1,14 @@
+{
+    "name": "global-devteam/laravel-api-password-reset",
+    "description": "This package implements password reset for APIs",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Carlos Albuquerque Carneiro",
+            "email": "carloscarneiropmw@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
