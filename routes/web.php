@@ -16,7 +16,8 @@ use Globaldevteam\LaravelApiPasswordReset\Greetr;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/greet/{name}', function($sName) {
+Route::get('/greet/{name}', function ($sName) {
     $oGreetr = new Greetr();
+
     return $oGreetr->greet($sName);
 });
