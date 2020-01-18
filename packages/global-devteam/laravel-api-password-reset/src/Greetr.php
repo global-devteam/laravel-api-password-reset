@@ -1,13 +1,11 @@
 <?php
 
-
 namespace Globaldevteam\LaravelApiPasswordReset;
-
 
 class Greetr
 {
-    public function greet(String $sName)
+    public function greet(string $sName)
     {
-        return 'Hi ' . $sName . '! How are you doing today?';
+        return 'Hi '.$sName.'! How are you doing today?';
     }
 }
