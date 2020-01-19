@@ -1,7 +1,7 @@
 {
     "name": "global-devteam/laravel-api-password-reset",
     "description": "This package implements password reset for APIs",
-    "type": "project",
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
@@ -9,6 +9,21 @@
             "email": "carloscarneiropmw@gmail.com"
         }
     ],
-    "minimum-stability": "stable",
-    "require": {}
+    "minimum-stability": "dev",
+    "require": {
+        "illuminate/support": "^5.0|^6.0"
+    },
+    "require-dev": {
+
+        "illuminate/support": "^5.8.15|^6.0",
+        "illuminate/database": "^5.8.15|^6.0"
+    },
+    "autoload": {
+        "classmap": [
+            "src/database/migrations/"
+        ],
+        "psr-4": {
+            "Globaldevteam\\LaravelApiPasswordReset\\": "src/"
+        }
+    }
 }
