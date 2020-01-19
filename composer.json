@@ -10,14 +10,7 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {
-        "illuminate/support": "^5.0|^6.0"
-    },
-    "require-dev": {
-
-        "illuminate/support": "^5.8.15|^6.0",
-        "illuminate/database": "^5.8.15|^6.0"
-    },
+    "require": {},
     "autoload": {
         "classmap": [
             "src/database/migrations/"
