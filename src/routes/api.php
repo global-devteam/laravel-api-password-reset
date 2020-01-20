@@ -13,7 +13,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'v1'], function () {
+Route::group(['prefix' => 'v1','middleware'=>'api'], function () {
     Route::group(['prefix' => 'auth'], function () {
 
         Route::post('password', 'Globaldevteam\LaravelApiPasswordReset\app\Http\Controllers\PasswordResetController@store');
