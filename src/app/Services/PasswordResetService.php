@@ -57,8 +57,6 @@ class PasswordResetService
     public function destroy(PasswordResetFormRequest $request)
     {
         $input = $request->validated();
-        //o token sempre sera encontrado por que no form request
-        //so passa se o token existir no banco de dados
         $passwordReset = PasswordReset::where([
             ['token', $input['token']],
             ['email', $input['email']]
