@@ -14,6 +14,7 @@ class Controller extends BaseController
     use AuthorizesRequests;
     use DispatchesJobs;
     use ValidatesRequests;
+
     protected function standardApiErrorResponse($exception, $code = Response::HTTP_INTERNAL_SERVER_ERROR)
     {
         Log::error($exception->getMessage());
