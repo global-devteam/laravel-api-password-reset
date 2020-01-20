@@ -13,14 +13,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'v1','middleware'=>'api'], function () {
+Route::group(['prefix' => 'v1', 'middleware'=>'api'], function () {
     Route::group(['prefix' => 'auth'], function () {
-
         Route::post('password', 'Globaldevteam\LaravelApiPasswordReset\app\Http\Controllers\PasswordResetController@store');
         Route::get('password/show/{token}', 'Globaldevteam\LaravelApiPasswordReset\app\Http\Controllers\PasswordResetController@show');
         Route::delete('password', 'Globaldevteam\LaravelApiPasswordReset\app\Http\Controllers\PasswordResetController@destroy');
-
     });
-
 });
-
