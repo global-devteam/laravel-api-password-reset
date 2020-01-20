@@ -30,7 +30,7 @@ class PasswordResetService
         );
         if ($user && $passwordReset)
             $user->notify(
-                new PasswordResetRequestNotification($passwordReset->token, $user->people->name)
+                new PasswordResetRequestNotification($passwordReset->token, $user->name)
             );
         return response()->json([
             'message' => 'We have e-mailed your password reset link!'
@@ -70,7 +70,7 @@ class PasswordResetService
         $user->password = bcrypt($input['password']);
         $user->save();
         $passwordReset->delete();
-        $user->notify(new PasswordResetSuccessNotification());
+        $user->notify(new PasswordResetSuccessNotification($user->name));
         return response()->json(['message' => 'Password successfully reset', 'user' => $user], Response::HTTP_OK);
     }
 }
