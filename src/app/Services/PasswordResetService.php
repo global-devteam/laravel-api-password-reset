@@ -9,6 +9,7 @@ use Globaldevteam\LaravelApiPasswordReset\app\Models\PasswordReset;
 use Globaldevteam\LaravelApiPasswordReset\app\Notifications\PasswordResetRequestNotification;
 use Globaldevteam\LaravelApiPasswordReset\app\Notifications\PasswordResetSuccessNotification;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
 
 class PasswordResetService
@@ -23,7 +24,7 @@ class PasswordResetService
             ['email' => $user->email],
             [
                 'email' => $user->email,
-                'token' => Str::random(60),
+                'token' => Str::random(Config::get('apiPasswordReset.tokenSize')),
             ]
         );
         if ($user && $passwordReset) {
@@ -71,7 +72,11 @@ class PasswordResetService
                 'message' => 'We can\'t find a user with that e-mail address.',
             ], Response::HTTP_NOT_FOUND);
         }
-        $user->password = bcrypt($input['password']);
+        if (Config::get('apiPasswordReset.bryptPassword')) {
+            $user->password = bcrypt($input['password']);
+        } else {
+            $user->password = $input['password'];
+        }
         $user->save();
         $passwordReset->delete();
         $user->notify(new PasswordResetSuccessNotification($user->name));

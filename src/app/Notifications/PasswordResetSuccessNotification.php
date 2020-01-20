@@ -27,7 +27,7 @@ class PasswordResetSuccessNotification extends Notification implements ShouldQue
     {
         return (new MailMessage())
             ->subject('Password successfully changed')
-            ->greeting('Olá '.$this->recipientName.',')
+            ->greeting('Hello '.$this->recipientName.',')
             ->line('You\'ve successfully changed your password.')
             ->line('If you did change password, no further action is required.')
             ->line('If you did not change password, protect your account.');
