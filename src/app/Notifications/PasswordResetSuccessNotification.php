@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Globaldevteam\LaravelApiPasswordReset\app\Notifications;
-
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -20,18 +18,16 @@ class PasswordResetSuccessNotification extends Notification implements ShouldQue
         $this->recipientName = $recipientName;
     }
 
-
     public function via($notifiable)
     {
         return ['mail'];
     }
 
-
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        return (new MailMessage())
             ->subject('Password successfully changed')
-            ->greeting('Olá ' . $this->recipientName . ',')
+            ->greeting('Olá '.$this->recipientName.',')
             ->line('You\'ve successfully changed your password.')
             ->line('If you did change password, no further action is required.')
             ->line('If you did not change password, protect your account.');
@@ -41,6 +37,7 @@ class PasswordResetSuccessNotification extends Notification implements ShouldQue
      * Get the array representation of the notification.
      *
      * @param mixed $notifiable
+     *
      * @return array
      */
     public function toArray($notifiable)

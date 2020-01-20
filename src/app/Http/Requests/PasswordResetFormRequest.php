@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Globaldevteam\LaravelApiPasswordReset\app\Http\Requests;
-
 
 use Globaldevteam\LaravelApiPasswordReset\app\Models\PasswordReset;
 use Illuminate\Foundation\Http\FormRequest;

@@ -1,22 +1,20 @@
 <?php
 
-
 namespace Globaldevteam\LaravelApiPasswordReset\app\Models;
-
 
 use Illuminate\Database\Eloquent\Model;
 
 class PasswordReset extends Model
 {
     protected $fillable = [
-        'email', 'token'
+        'email', 'token',
     ];
 
     public static function baseRules()
     {
         return
             [
-                'email' => 'required|string|email|exists:users,email'
+                'email' => 'required|string|email|exists:users,email',
             ];
     }
 
@@ -24,9 +22,9 @@ class PasswordReset extends Model
     {
         return
             [
-                'email' => 'required|string|email|exists:users,email',
+                'email'    => 'required|string|email|exists:users,email',
                 'password' => 'required|string|confirmed',
-                'token' => 'required|string|exists:password_resets,token'
+                'token'    => 'required|string|exists:password_resets,token',
             ];
     }
 }

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Globaldevteam\LaravelApiPasswordReset\app\Http\Controllers;
-
 
 use Exception;
 use Globaldevteam\LaravelApiPasswordReset\app\Http\Requests\PasswordResetFormRequest;
@@ -16,13 +14,12 @@ class PasswordResetController extends Controller
     public function __construct(PasswordResetService $passwordResetService)
     {
         $this->passwordResetService = $passwordResetService;
-
     }
+
     public function store(PasswordResetFormRequest $request)
     {
         try {
             return $this->passwordResetService->store($request);
-
         } catch (Exception $exception) {
             return $this->standardApiErrorResponse($exception, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -32,7 +29,6 @@ class PasswordResetController extends Controller
     {
         try {
             return $this->passwordResetService->show($token);
-
         } catch (Exception $exception) {
             return $this->standardApiErrorResponse($exception, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -42,10 +38,8 @@ class PasswordResetController extends Controller
     {
         try {
             return $this->passwordResetService->destroy($request);
-
         } catch (Exception $exception) {
             return $this->standardApiErrorResponse($exception, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
-
     }
 }
