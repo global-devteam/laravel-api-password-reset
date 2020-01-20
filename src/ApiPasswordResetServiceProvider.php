@@ -6,12 +6,10 @@ use Illuminate\Support\ServiceProvider;
 
 class ApiPasswordResetServiceProvider extends ServiceProvider
 {
-
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . "/config/apiPasswordReset.php", 'apiPasswordReset');
+        $this->mergeConfigFrom(__DIR__.'/config/apiPasswordReset.php', 'apiPasswordReset');
     }
-
 
     public function boot()
     {
@@ -21,10 +19,11 @@ class ApiPasswordResetServiceProvider extends ServiceProvider
             $this->publishConfigs();
         }
     }
+
     protected function publishConfigs()
     {
         $this->publishes([
-            __DIR__ . "/config/apiPasswordReset.php" => config_path('apiPasswordReset.php'),
+            __DIR__.'/config/apiPasswordReset.php' => config_path('apiPasswordReset.php'),
         ], 'laravel-api-password-reset');
     }
 }

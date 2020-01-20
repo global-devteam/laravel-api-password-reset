@@ -27,10 +27,11 @@ class PasswordResetRequestNotification extends Notification implements ShouldQue
 
     public function toMail($notifiable)
     {
-        $link = Config::get('apiPasswordReset.emailNotificationLink') . $this->token;
+        $link = Config::get('apiPasswordReset.emailNotificationLink').$this->token;
+
         return (new MailMessage())
             ->subject('Password reset request')
-            ->greeting('Hello ' . $this->recipientName . ',')
+            ->greeting('Hello '.$this->recipientName.',')
             ->line('You are receiving this email because we received a password reset request for your account.')
             ->action('Change Password', $link)
             ->line('If you did not request a password reset, no further action is required.');
