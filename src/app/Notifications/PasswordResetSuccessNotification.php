@@ -30,13 +30,11 @@ class PasswordResetSuccessNotification extends Notification implements ShouldQue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('Senha alterada com sucesso')
+            ->subject('Password successfully changed')
             ->greeting('Olá ' . $this->recipientName . ',')
-            ->line('Sua senha foi alterada com sucesso.')
-            ->line('Se você solicitou esta alteração de senha não é necessário se preocupar.')
-            ->line('Se você não solicitou esta alteração por favor envie um email para: contato@cicllos.com.br.')
-            ->line('Atenciosamente,')
-            ->salutation('Cicllos Tecnologia');
+            ->line('You\'ve successfully changed your password.')
+            ->line('If you did change password, no further action is required.')
+            ->line('If you did not change password, protect your account.');
     }
 
     /**

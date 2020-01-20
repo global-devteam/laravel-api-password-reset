@@ -25,7 +25,7 @@ class PasswordResetService
             ['email' => $user->email],
             [
                 'email' => $user->email,
-                'token' => Str::random(6)
+                'token' => Str::random(60)
             ]
         );
         if ($user && $passwordReset)

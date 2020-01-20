@@ -32,13 +32,12 @@ class PasswordResetRequestNotification extends Notification implements ShouldQue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('Solicitação de alteração de senha')
-            ->greeting('Olá ' . $this->recipientName . ',')
-            ->line('Estamos lhe enviando este email por que você solicitou uma alteração de senha. Digite o código abaixo no aplicativo:')
-            ->action($this->token, null)
-            ->line('Caso não tenha solicitado esta alteração por favor ignore este email.')
-            ->line('Atenciosamente,')
-            ->salutation('Cicllos Tecnologia');
+            ->subject('Password reset request')
+            ->greeting('Hello ' . $this->recipientName . ',')
+            ->line('You are receiving this email because we received a password reset request for your account.')
+            ->action('Change Password', 'some/non/api/link/' . $this->token)
+            ->line('If you did not request a password reset, no further action is required.');
+
     }
 
 
