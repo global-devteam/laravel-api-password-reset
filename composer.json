@@ -20,5 +20,12 @@
         "psr-4": {
             "Globaldevteam\\LaravelApiPasswordReset\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Globaldevteam\\LaravelApiPasswordReset\\ApiPasswordResetServiceProvider"
+            ]
+        }
     }
 }
