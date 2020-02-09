@@ -24,7 +24,7 @@ class ApiPasswordResetServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/config/apiPasswordReset.php' => config_path('apiPasswordReset.php'),
-            __DIR__.'/resources/lang'=> '/resources/lang'
+            __DIR__.'/resources/lang'=> app_path('/resources/lang')
         ], 'laravel-api-password-reset');
     }
 }
