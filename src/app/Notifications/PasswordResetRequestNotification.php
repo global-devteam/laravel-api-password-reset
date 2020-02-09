@@ -30,11 +30,11 @@ class PasswordResetRequestNotification extends Notification implements ShouldQue
         $link = Config::get('apiPasswordReset.emailNotificationLink') . $this->token;
 
         return (new MailMessage())
-            ->subject(__('email.subject'))
-            ->greeting(__('email.greeting', [$this->recipientName]))
-            ->line(__('email.intro'))
-            ->action(__('email.buttonText'), $link)
-            ->line(__('email.noFurtherActionRequired'));
+            ->subject(__('subject'))
+            ->greeting(__('greeting', [$this->recipientName]))
+            ->line(__('intro'))
+            ->action(__('buttonText'), $link)
+            ->line(__('noFurtherActionRequired'));
     }
 
     public function toArray($notifiable)
