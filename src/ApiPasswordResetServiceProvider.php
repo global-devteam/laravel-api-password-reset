@@ -13,7 +13,7 @@ class ApiPasswordResetServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $this->loadTranslationsFrom(__DIR__ . '/resources/lang', 'Globaldevteam\LaravelApiPasswordReset');
+        $this->loadTranslationsFrom(__DIR__ . '/resources/lang', 'api-recovery-password');
         $this->loadRoutesFrom(__DIR__ . '/routes/api.php');
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
         if ($this->app->runningInConsole()) {
@@ -25,6 +25,7 @@ class ApiPasswordResetServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/config/apiPasswordReset.php' => config_path('apiPasswordReset.php'),
+            __DIR__.'/resources/lang'=>tran
         ], 'laravel-api-password-reset');
     }
 }

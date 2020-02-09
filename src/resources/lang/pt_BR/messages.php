@@ -1,6 +1,5 @@
 <?php
 
-namespace Globaldevteam\LaravelApiPasswordReset;
 return [
     'subject' => 'Recuperação de Senha',
     'greeting' => 'Olá :name,',
