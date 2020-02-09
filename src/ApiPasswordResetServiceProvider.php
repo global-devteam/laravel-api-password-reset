@@ -13,7 +13,7 @@ class ApiPasswordResetServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $this->loadTranslationsFrom(__DIR__ . '/resources/lang', 'Globaldevteam\LaravelApiPasswordReset;');
+        $this->loadTranslationsFrom(__DIR__ . '/resources/lang', 'Globaldevteam\LaravelApiPasswordReset');
         $this->loadRoutesFrom(__DIR__ . '/routes/api.php');
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
         if ($this->app->runningInConsole()) {
