@@ -11,5 +11,6 @@
 
 
     {{__('api-password-recovery.regards')}},<br>
+
     {{ config('app.name') }}
 @endcomponent
