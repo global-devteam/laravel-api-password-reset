@@ -14,9 +14,9 @@
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => Config::get('apiPasswordReset.route.prefix'), 'middleware' => Config::get('apiPasswordReset.route.middleware')], function () {
-    $uri = Config::get('apiPasswordReset.route.uri');
-    Route::post($uri, 'Globaldevteam\LaravelApiPasswordReset\app\Http\Controllers\PasswordResetController@store');
-    Route::get($uri.'/show/{token}', 'Globaldevteam\LaravelApiPasswordReset\app\Http\Controllers\PasswordResetController@show');
-    Route::delete($uri, 'Globaldevteam\LaravelApiPasswordReset\app\Http\Controllers\PasswordResetController@destroy');
+Route::group(['prefix' => Config::get('apiPasswordRecovery.route.prefix'), 'middleware' => Config::get('apiPasswordRecovery.route.middleware')], function () {
+    $uri = Config::get('apiPasswordRecovery.route.uri');
+    Route::post($uri, 'Globaldevteam\LaravelApiPasswordReset\app\Http\Controllers\PasswordResetController@store')->name('password-recovery.store');
+    Route::get($uri.'/show/{token}', 'Globaldevteam\LaravelApiPasswordReset\app\Http\Controllers\PasswordResetController@show')->name('password-recovery.show');
+    Route::delete($uri, 'Globaldevteam\LaravelApiPasswordReset\app\Http\Controllers\PasswordResetController@destroy')->name('password-recovery.destroy');
 });
