@@ -3,9 +3,9 @@
 
     {{__('api-password-recovery.intro')}}
 
-    @component('mail::button', ['url' => $url])
-        {{__('api-password-recovery.buttonText')}}
-    @endcomponent
+@component('mail::button', ['url' => $url])
+{{__('api-password-recovery.buttonText')}}
+@endcomponent
 
     {{__('api-password-recovery.outro')}}
 
