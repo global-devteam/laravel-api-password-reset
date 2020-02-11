@@ -27,11 +27,11 @@ class PasswordResetRequestNotification extends Notification implements ShouldQue
 
     public function toMail($notifiable)
     {
-        $url = Config::get('apiPasswordRecovery.emailNotificationLink') . $this->token;
+        $url = Config::get('apiPasswordRecovery.emailNotificationLink').$this->token;
 
         return (new MailMessage())
             ->subject(__('api-password-recovery.subject'))
-            ->markdown('vendor.api-password-recovery', ['url' => $url, "name" => $this->recipientName]);
+            ->markdown('vendor.api-password-recovery', ['url' => $url, 'name' => $this->recipientName]);
     }
 
     public function toArray($notifiable)
