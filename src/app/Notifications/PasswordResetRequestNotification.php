@@ -31,7 +31,7 @@ class PasswordResetRequestNotification extends Notification implements ShouldQue
 
         return (new MailMessage())
             ->subject(__('api-password-recovery.subject'))
-            ->markdown('mail.invoice.paid', ['url' => $url, "name" => $this->recipientName]);
+            ->markdown('notifications.api-password-recovery', ['url' => $url, "name" => $this->recipientName]);
         /*->greeting(__('api-password-recovery.greeting', ["name"=>$this->recipientName]))
         ->line(__('api-password-recovery.intro'))
         ->action(__('api-password-recovery.buttonText'), $link)
