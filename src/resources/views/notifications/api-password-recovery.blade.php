@@ -1,15 +1,15 @@
 @component('mail::message')
-    {{__('greeting',['name'=>$name])}}
+    {{__('api-password-recovery.greeting',['name'=>$name])}}
 
-    {{__('intro')}}
+    {{__('api-password-recovery.intro')}}
 
     @component('mail::button', ['url' => $url])
-        {{__('buttonText')}}
+        {{__('api-password-recovery.buttonText')}}
     @endcomponent
 
-    {{__('outro')}}
-    <p>Teste</p>
+    {{__('api-password-recovery.outro')}}
 
-    {{__('regards')}},<br>
+
+    {{__('api-password-recovery.regards')}},<br>
     {{ config('app.name') }}
 @endcomponent
