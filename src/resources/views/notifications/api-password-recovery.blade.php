@@ -7,10 +7,10 @@
 {{__('api-password-recovery.buttonText')}}
 @endcomponent
 
-    {{__('api-password-recovery.outro')}}
+{{__('api-password-recovery.outro')}}
 
 
-    {{__('api-password-recovery.regards')}},<br>
+{{__('api-password-recovery.regards')}},<br>
 
     {{ config('app.name') }}
 @endcomponent
