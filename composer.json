@@ -7,6 +7,10 @@
         {
             "name": "Carlos Albuquerque Carneiro",
             "email": "carloscarneiropmw@gmail.com"
+        },
+        {
+            "name": "Beau Raines",
+            "email": "beau.raines@gmail.com"
         }
     ],
     "minimum-stability": "dev",
