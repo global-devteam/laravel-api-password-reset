@@ -4,17 +4,17 @@ namespace Globaldevteam\LaravelApiPasswordReset\app\Services;
 
 use App\User;
 use Carbon\Carbon;
-use Globaldevteam\LaravelApiPasswordReset\app\Http\Requests\PasswordResetFormRequest;
+use Globaldevteam\LaravelApiPasswordReset\app\Http\Requests\PasswordRecoveryFormRequest;
 use Globaldevteam\LaravelApiPasswordReset\app\Models\PasswordReset;
-use Globaldevteam\LaravelApiPasswordReset\app\Notifications\PasswordResetRequestNotification;
-use Globaldevteam\LaravelApiPasswordReset\app\Notifications\PasswordResetSuccessNotification;
+use Globaldevteam\LaravelApiPasswordReset\app\Notifications\PasswordRecoveryRequestNotification;
+use Globaldevteam\LaravelApiPasswordReset\app\Notifications\PasswordRecoverySuccessNotification;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
 
-class PasswordResetService
+class PasswordRecoveryService
 {
-    public function store(PasswordResetFormRequest $request)
+    public function store(PasswordRecoveryFormRequest $request)
     {
         $input = $request->validated();
 
@@ -29,7 +29,7 @@ class PasswordResetService
         );
         if ($user && $passwordReset) {
             $user->notify(
-                new PasswordResetRequestNotification($passwordReset->token, $user->name)
+                new PasswordRecoveryRequestNotification($passwordReset->token, $user->name)
             );
         }
 
@@ -58,7 +58,7 @@ class PasswordResetService
         return response()->json($passwordReset, Response::HTTP_OK);
     }
 
-    public function destroy(PasswordResetFormRequest $request)
+    public function destroy(PasswordRecoveryFormRequest $request)
     {
         $input = $request->validated();
         $passwordReset = PasswordReset::where([
@@ -79,7 +79,7 @@ class PasswordResetService
         }
         $user->save();
         $passwordReset->delete();
-        $user->notify(new PasswordResetSuccessNotification($user->name));
+        $user->notify(new PasswordRecoverySuccessNotification($user->name));
 
         return response()->json(['message' => 'Password successfully reset', 'user' => $user], Response::HTTP_OK);
     }

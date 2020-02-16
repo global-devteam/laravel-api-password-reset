@@ -4,7 +4,7 @@ namespace Globaldevteam\LaravelApiPasswordReset;
 
 use Illuminate\Support\ServiceProvider;
 
-class ApiPasswordResetServiceProvider extends ServiceProvider
+class ApiPasswordRecoveryServiceProvider extends ServiceProvider
 {
     public function register()
     {
