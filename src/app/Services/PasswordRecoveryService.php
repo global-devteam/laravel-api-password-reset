@@ -19,7 +19,11 @@ class PasswordRecoveryService
         $input = $request->validated();
 
         $user = User::where('email', $input['email'])->first();
-
+        if (!$user) {
+            return response()->json([
+                'message' => 'No user was found with this email address',
+            ], Response::HTTP_NOT_FOUND);
+        }
         $passwordReset = PasswordReset::updateOrCreate(
             ['email' => $user->email],
             [
@@ -27,12 +31,9 @@ class PasswordRecoveryService
                 'token' => Str::random(Config::get('apiPasswordReset.tokenSize')),
             ]
         );
-        if ($user && $passwordReset) {
-            $user->notify(
-                new PasswordRecoveryRequestNotification($passwordReset->token, $user->name)
-            );
-        }
-
+        $user->notify(
+            new PasswordRecoveryRequestNotification($passwordReset->token, $user->name)
+        );
         return response()->json([
             'message' => 'We have e-mailed your password reset link!',
         ], Response::HTTP_CREATED);
@@ -78,9 +79,11 @@ class PasswordRecoveryService
             $user->password = $input['password'];
         }
         $user->save();
-        $passwordReset->delete();
+        PasswordReset::where([
+            ['token', $input['token']],
+            ['email', $input['email']],
+        ])->delete();
         $user->notify(new PasswordRecoverySuccessNotification($user->name));
-
         return response()->json(['message' => 'Password successfully reset', 'user' => $user], Response::HTTP_OK);
     }
 }
