@@ -73,7 +73,7 @@ class PasswordRecoveryService
                 'message' => 'We can\'t find a user with that e-mail address.',
             ], Response::HTTP_NOT_FOUND);
         }
-        if (Config::get('apiPasswordReset.bryptPassword')) {
+        if (Config::get('apiPasswordRecovery.bcryptPassword')) {
             $user->password = bcrypt($input['password']);
         } else {
             $user->password = $input['password'];
