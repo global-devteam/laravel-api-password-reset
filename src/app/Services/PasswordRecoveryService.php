@@ -28,7 +28,7 @@ class PasswordRecoveryService
             ['email' => $user->email],
             [
                 'email' => $user->email,
-                'token' => Str::random(Config::get('apiPasswordReset.tokenSize')),
+                'token' => Str::random(Config::get('apiPasswordRecovery.tokenSize')),
             ]
         );
         $user->notify(
