@@ -6,6 +6,7 @@ use Exception;
 use Globaldevteam\LaravelApiPasswordReset\app\Http\Requests\PasswordRecoveryFormRequest;
 use Globaldevteam\LaravelApiPasswordReset\app\Services\PasswordRecoveryService;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Config;
 
 class PasswordResetController extends Controller
 {
@@ -28,7 +29,8 @@ class PasswordResetController extends Controller
     public function show($token)
     {
         try {
-            return $this->passwordResetService->show($token);
+            //return $this->passwordResetService->show($token);
+            return view(Config::get('formPath'), compact('token'));
         } catch (Exception $exception) {
             return $this->standardApiErrorResponse($exception, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
