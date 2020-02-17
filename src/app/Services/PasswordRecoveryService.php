@@ -4,34 +4,36 @@ namespace Globaldevteam\LaravelApiPasswordReset\app\Services;
 
 use App\User;
 use Carbon\Carbon;
-use Globaldevteam\LaravelApiPasswordReset\app\Http\Requests\PasswordResetFormRequest;
+use Globaldevteam\LaravelApiPasswordReset\app\Http\Requests\PasswordRecoveryFormRequest;
 use Globaldevteam\LaravelApiPasswordReset\app\Models\PasswordReset;
-use Globaldevteam\LaravelApiPasswordReset\app\Notifications\PasswordResetRequestNotification;
-use Globaldevteam\LaravelApiPasswordReset\app\Notifications\PasswordResetSuccessNotification;
+use Globaldevteam\LaravelApiPasswordReset\app\Notifications\PasswordRecoveryRequestNotification;
+use Globaldevteam\LaravelApiPasswordReset\app\Notifications\PasswordRecoverySuccessNotification;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
 
-class PasswordResetService
+class PasswordRecoveryService
 {
-    public function store(PasswordResetFormRequest $request)
+    public function store(PasswordRecoveryFormRequest $request)
     {
         $input = $request->validated();
 
         $user = User::where('email', $input['email'])->first();
-
+        if (!$user) {
+            return response()->json([
+                'message' => 'No user was found with this email address',
+            ], Response::HTTP_NOT_FOUND);
+        }
         $passwordReset = PasswordReset::updateOrCreate(
             ['email' => $user->email],
             [
                 'email' => $user->email,
-                'token' => Str::random(Config::get('apiPasswordReset.tokenSize')),
+                'token' => Str::random(Config::get('apiPasswordRecovery.tokenSize')),
             ]
         );
-        if ($user && $passwordReset) {
-            $user->notify(
-                new PasswordResetRequestNotification($passwordReset->token, $user->name)
-            );
-        }
+        $user->notify(
+            new PasswordRecoveryRequestNotification($passwordReset->token, $user->name)
+        );
 
         return response()->json([
             'message' => 'We have e-mailed your password reset link!',
@@ -58,7 +60,7 @@ class PasswordResetService
         return response()->json($passwordReset, Response::HTTP_OK);
     }
 
-    public function destroy(PasswordResetFormRequest $request)
+    public function destroy(PasswordRecoveryFormRequest $request)
     {
         $input = $request->validated();
         $passwordReset = PasswordReset::where([
@@ -72,14 +74,17 @@ class PasswordResetService
                 'message' => 'We can\'t find a user with that e-mail address.',
             ], Response::HTTP_NOT_FOUND);
         }
-        if (Config::get('apiPasswordReset.bryptPassword')) {
+        if (Config::get('apiPasswordRecovery.bcryptPassword')) {
             $user->password = bcrypt($input['password']);
         } else {
             $user->password = $input['password'];
         }
         $user->save();
-        $passwordReset->delete();
-        $user->notify(new PasswordResetSuccessNotification($user->name));
+        PasswordReset::where([
+            ['token', $input['token']],
+            ['email', $input['email']],
+        ])->delete();
+        $user->notify(new PasswordRecoverySuccessNotification($user->name));
 
         return response()->json(['message' => 'Password successfully reset', 'user' => $user], Response::HTTP_OK);
     }

@@ -5,7 +5,7 @@ namespace Globaldevteam\LaravelApiPasswordReset\app\Http\Requests;
 use Globaldevteam\LaravelApiPasswordReset\app\Models\PasswordReset;
 use Illuminate\Foundation\Http\FormRequest;
 
-class PasswordResetFormRequest extends FormRequest
+class PasswordRecoveryFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

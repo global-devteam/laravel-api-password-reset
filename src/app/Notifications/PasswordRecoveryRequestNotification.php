@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Config;
 
-class PasswordResetRequestNotification extends Notification implements ShouldQueue
+class PasswordRecoveryRequestNotification extends Notification implements ShouldQueue
 {
     use Queueable;
     protected $token;

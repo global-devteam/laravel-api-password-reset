@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdatePasswordResetsTable extends Migration
+class AddUpdatedAtColumnToPasswordResetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,16 +14,19 @@ class UpdatePasswordResetsTable extends Migration
     public function up()
     {
         Schema::table('password_resets', function (Blueprint $table) {
-            $table->bigIncrements('id')->first();
-            $table->timestamps();
+            $table->timestamp('updated_at')->nullable();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down()
     {
         Schema::table('password_resets', function (Blueprint $table) {
-            $table->dropColumn('id');
-            $table->dropTimestamps();
+            $table->dropColumn('updated_at');
         });
     }
 }

@@ -3,20 +3,20 @@
 namespace Globaldevteam\LaravelApiPasswordReset\app\Http\Controllers;
 
 use Exception;
-use Globaldevteam\LaravelApiPasswordReset\app\Http\Requests\PasswordResetFormRequest;
-use Globaldevteam\LaravelApiPasswordReset\app\Services\PasswordResetService;
+use Globaldevteam\LaravelApiPasswordReset\app\Http\Requests\PasswordRecoveryFormRequest;
+use Globaldevteam\LaravelApiPasswordReset\app\Services\PasswordRecoveryService;
 use Illuminate\Http\Response;
 
 class PasswordResetController extends Controller
 {
     private $passwordResetService;
 
-    public function __construct(PasswordResetService $passwordResetService)
+    public function __construct(PasswordRecoveryService $passwordResetService)
     {
         $this->passwordResetService = $passwordResetService;
     }
 
-    public function store(PasswordResetFormRequest $request)
+    public function store(PasswordRecoveryFormRequest $request)
     {
         try {
             return $this->passwordResetService->store($request);
@@ -34,7 +34,7 @@ class PasswordResetController extends Controller
         }
     }
 
-    public function destroy(PasswordResetFormRequest $request)
+    public function destroy(PasswordRecoveryFormRequest $request)
     {
         try {
             return $this->passwordResetService->destroy($request);
