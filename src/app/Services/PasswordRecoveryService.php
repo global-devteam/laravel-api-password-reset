@@ -34,6 +34,7 @@ class PasswordRecoveryService
         $user->notify(
             new PasswordRecoveryRequestNotification($passwordReset->token, $user->name)
         );
+
         return response()->json([
             'message' => 'We have e-mailed your password reset link!',
         ], Response::HTTP_CREATED);
@@ -84,6 +85,7 @@ class PasswordRecoveryService
             ['email', $input['email']],
         ])->delete();
         $user->notify(new PasswordRecoverySuccessNotification($user->name));
+
         return response()->json(['message' => 'Password successfully reset', 'user' => $user], Response::HTTP_OK);
     }
 }
