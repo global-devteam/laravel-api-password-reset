@@ -28,7 +28,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Globaldevteam\\LaravelApiPasswordReset\\ApiPasswordResetServiceProvider"
+                "Globaldevteam\\LaravelApiPasswordReset\\ApiPasswordRecoveryServiceProvider"
             ]
         }
     }
