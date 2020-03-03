@@ -3,7 +3,7 @@
 Easy laravel api password reset for your application
 
 1. Run `composer require global-devteam/laravel-api-password-reset`
-2. Run `php artisan vendor:publish --tag=laravel-api-password-reset`
+2. Run `php artisan vendor:publish --tag=laravel-api-password-recovery`
 3. Run `php artisan migrate`
 4. Run `php artisan route:list | grep password` to see new routes
 
