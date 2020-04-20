@@ -19,8 +19,10 @@ class Controller extends BaseController
     {
         Log::error($exception->getMessage());
 
-        return response()->json(['message' => 'Internal Server Error'],
-            $code);
+        return response()->json(
+            ['message' => 'Internal Server Error'],
+            $code
+        );
     }
 
     protected function standardApiResponse($data, $dataName, $status = 200, $message = null)

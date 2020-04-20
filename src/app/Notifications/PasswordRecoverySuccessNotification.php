@@ -9,40 +9,40 @@ use Illuminate\Notifications\Notification;
 
 class PasswordRecoverySuccessNotification extends Notification implements ShouldQueue
 {
-  use Queueable;
+    use Queueable;
 
-  private $recipientName;
+    private $recipientName;
 
-  public function __construct($recipientName)
-  {
-    $this->recipientName = $recipientName;
-  }
+    public function __construct($recipientName)
+    {
+        $this->recipientName = $recipientName;
+    }
 
-  public function via($notifiable)
-  {
-    return ['mail'];
-  }
+    public function via($notifiable)
+    {
+        return ['mail'];
+    }
 
-  public function toMail($notifiable)
-  {
-    return (new MailMessage())
+    public function toMail($notifiable)
+    {
+        return (new MailMessage())
       ->subject(__('api-password-recovery.subject_success'))
-      ->greeting('Hello ' . $this->recipientName . ',')
-      ->greeting(__('api-password-recovery.greeting',['name'=>$this->recipientName]))
+      ->greeting('Hello '.$this->recipientName.',')
+      ->greeting(__('api-password-recovery.greeting', ['name'=>$this->recipientName]))
       ->line(__('api-password-recovery.success_message'));
-  }
+    }
 
-  /**
-   * Get the array representation of the notification.
-   *
-   * @param mixed $notifiable
-   *
-   * @return array
-   */
-  public function toArray($notifiable)
-  {
-    return [
-      //
-    ];
-  }
+    /**
+     * Get the array representation of the notification.
+     *
+     * @param mixed $notifiable
+     *
+     * @return array
+     */
+    public function toArray($notifiable)
+    {
+        return [
+            //
+        ];
+    }
 }
